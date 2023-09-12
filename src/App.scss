@@ -1,0 +1,105 @@
+
+html, body, #react-root {
+  background-color: var(--bg-color-dark);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: var(--font-size-regular);
+  font-weight: var(--font-weight-regular);
+  color: var(--font-color-primary);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.MuiBackdrop-root {
+  z-index: 9999;
+  margin: 0px;
+}
+
+.site-container {
+  width: 100%;
+  height: 100%;
+}
+
+.parser-container {
+  width: 100%;
+  height: 100%;
+  touch-action: none; //allows the touch events to work
+
+  >canvas {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+.show-keyboard {
+  display: hidden;
+  top: 0px;
+  position: absolute;
+  z-index: 1;
+}
+
+.select-direction {
+  >div {
+    width: 100%;
+    display: flex;
+
+    >div {
+      width: 50%;
+      border: 5px solid black;
+      background-color: white;
+
+      >svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.button-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+}
+
+.load-image-screen {
+  margin: auto;
+  width: 90%;
+  max-width: 470px;
+  padding-top: 100px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .readme {
+    p {
+      text-indent: 20px;
+    }
+    
+    h1 {
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .image-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+}
