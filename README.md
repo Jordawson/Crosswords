@@ -4,6 +4,8 @@ The Buffalo news used to just upload images of their crosswords, they were not i
 I had a friend that used to do Buffalo news crosswords a lot, but he used to just screenshot them and draw on the image on his iPad with his finger.
 This was a successful attempt at letting that friend play the Buffalo News crosswords.
 
+[Live Demo](https://jordandawson.com/crosswords)
+
 ## Usage:
 
 Press Upload Image below to pick an image on your hard drive of a crossword (grab something from google images)
