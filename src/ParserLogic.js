@@ -352,7 +352,7 @@ export default class ParserLogic {
     }
 
     if (this.pointer.isPinching) {
-      this.zoom(this.pointer.tzpos, (this.pointer.tdz + this.pointer.tz + this.pointer.tzid) / (this.pointer.tz + this.pointer.tzid));
+      this.zoom(this.pointer.touchZoomPos, (this.pointer.touchDeltaZoom + this.pointer.touchZoom + this.pointer.touchZoomInitialDistance) / (this.pointer.touchZoom + this.pointer.touchZoomInitialDistance));
       this.canvasTranslate.x += this.pointer.tzdpos.x / this.canvasScale;
       this.canvasTranslate.y += this.pointer.tzdpos.y / this.canvasScale;
     }
