@@ -1,16 +1,31 @@
-# Crosswords YEA
+# Crossword Parser!
 
-https://printablee.com/postpic/2013/05/large-print-crossword-puzzles-printable_263419.png
+The Buffalo news used to just upload images of their crosswords, they were not interactive at all.
+I had a friend that used to do Buffalo news crosswords a lot, but he used to just screenshot them and draw on the image on his iPad with his finger.
+This was a successful attempt at letting that friend play the Buffalo News crosswords.
 
+## Usage:
 
+Press Upload Image below to pick an image on your hard drive of a crossword (grab something from google images)
 
+Or press Use Test Image to load in a test image that works, pulled from google images.
 
+Once the image loads, drag the screen to move the image around, and then use the mouse wheel (or pinch to zoom) to zoom in and out.
 
-# Getting Started with Create React App
+Click anywhere on a grid square in the crosswords to set your cursor to type, and then click again if you want to change the direction you are typing in!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Notes:
 
-## Available Scripts
+The detection of the crossword grid is very rudimentary and was not improved upon much after it was proven to work with crosswords from the Buffalo News.
+
+This isn't exactly the cleanest code because it was a one off project made for a specific purpose, but it solves a fun project in a cool way while linking a few technologies together.
+
+This solution uses a pointer library that I made myself a while back (util/pointer.js), because I was curious about making one.
+I have no plans on releasing it, but I do prefer how it works over other libraries I have found.
+
+The Buffalo News eventually made an app to play their crosswords... or so I've heard...
+
+## Running Locally
 
 In the project directory, you can run:
 
@@ -21,58 +36,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

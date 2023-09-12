@@ -15,30 +15,7 @@ export default class Pointer {
     this.mouseDownPos = { x: 0, y: 0 };
     this.mouseDelta = { x: 0, y: 0 };
 
-    this.m2Id = null;
-    this.m2Pos = { x: 0, y: 0 };
-    this.m2DownPos = { x: 0, y: 0 };
-    this.m2IsDragging = false;
-    
-    this.isPinching = false;
-    this.isScalingX = false;
-    this.isScalingY = false;
-    this.isRotating = false;
-    this.tzipos = { x: 0, y: 0 }; //touch zoom initial position
-    this.tzpos = { x: 0, y: 0 }; //touch zoom position
-    this.tzdpos = { x: 0, y: 0 }; //touch zoom delta position
-    this.tzid = 0; //touch zoom initial distance
-    this.tzxid = 0; //touch zoom x initial distance
-    this.tzyid = 0; //touch zoom y initial distance
-    this.tz = 0; //touch zoom
-    this.tzx = 0; //touch zoom x
-    this.tzy = 0; //touch zoom y
-    this.tdz = 0; //touch delta zoom
-    this.tdzx = 0; //touch delta zoom x
-    this.tdzy = 0; //touch delta zoom y
-    this.tria = 0; //touch rotate initial angle
-    this.tr = 0; //touch rotate
-    this.tdr = 0; //touch delta rotate
+    this.resetMultiTouchVars();
   }
 
   resetMultiTouchVars = () => {
@@ -51,21 +28,21 @@ export default class Pointer {
     this.isScalingX = false;
     this.isScalingY = false;
     this.isRotating = false;
-    this.tzipos = { x: 0, y: 0 }; //touch zoom initial position
-    this.tzpos = { x: 0, y: 0 }; //touch zoom position
-    this.tzdpos = { x: 0, y: 0 }; //touch zoom delta position
-    this.tzid = 0; //touch zoom initial distance
-    this.tzxid = 0; //touch zoom x initial distance
-    this.tzyid = 0; //touch zoom y initial distance
-    this.tz = 0; //touch zoom
-    this.tzx = 0; //touch zoom x
-    this.tzy = 0; //touch zoom y
-    this.tdz = 0; //touch delta zoom
-    this.tdzx = 0; //touch delta zoom x
-    this.tdzy = 0; //touch delta zoom y
-    this.tria = 0; //touch rotate initial angle
-    this.tr = 0; //touch rotate
-    this.tdr = 0; //touch delta rotate
+    this.touchZoomInitialPos = { x: 0, y: 0 };
+    this.touchZoomPos = { x: 0, y: 0 };
+    this.touchZoomDeltaPos = { x: 0, y: 0 };
+    this.touchZoomInitialDistance = 0;
+    this.touchZoomXInitialDistance = 0;
+    this.touchZoomYInitialDistance = 0;
+    this.touchZoom = 0;
+    this.touchZoomX = 0;
+    this.touchZoomY = 0;
+    this.touchDeltaZoom = 0;
+    this.touchDeltaZoomX = 0;
+    this.touchDeltaZoomY = 0;
+    this.touchRotateInitialAngle = 0;
+    this.touchRotate = 0;
+    this.touchDeltaRotate = 0;
   };
 
   updateMouse = (e, event) => {
@@ -120,65 +97,64 @@ export default class Pointer {
     }
 
     if ((this.mouseDragging || this.m2Dragging) && this.m2Id) {
-      const tzpos = {
+      const touchZoomPos = {
         x: (this.mousePos.x + this.m2Pos.x) / 2,
         y: (this.mousePos.y + this.m2Pos.y) / 2,
       };
-      const tz = distance(this.mousePos.x, this.mousePos.y, this.m2Pos.x, this.m2Pos.y);
-      const tzx = Math.abs(this.mousePos.x - this.m2Pos.x);
-      const tzy = Math.abs(this.mousePos.y - this.m2Pos.y);
+      const touchZoom = distance(this.mousePos.x, this.mousePos.y, this.m2Pos.x, this.m2Pos.y);
+      const touchZoomX = Math.abs(this.mousePos.x - this.m2Pos.x);
+      const touchZoomY = Math.abs(this.mousePos.y - this.m2Pos.y);
       const a = angle(this.mousePos.x, this.mousePos.y, this.m2Pos.x, this.m2Pos.y);
 
       if (!this.isPinching) {
         this.isPinching = true;
-        this.tzipos = tzpos;
-        this.tzpos = tzpos;
-        this.tzid = tz;
-        this.tzxid = tzx;
-        this.tzyid = tzy;
-        this.tria = a;
+        this.touchZoomInitialPos = touchZoomPos;
+        this.touchZoomPos = touchZoomPos;
+        this.touchZoomInitialDistance = touchZoom;
+        this.touchZoomXInitialDistance = touchZoomX;
+        this.touchZoomYInitialDistance = touchZoomY;
+        this.touchRotateInitialAngle = a;
 
-        this.tz = 0;
-        this.tzx = 0;
-        this.tzy = 0;
-        this.tr = 0;
+        this.touchZoom = 0;
+        this.touchZoomX = 0;
+        this.touchZoomY = 0;
+        this.touchRotate = 0;
       }
-      this.tzdpos.x = tzpos.x - this.tzpos.x;
-      this.tzdpos.y = tzpos.y - this.tzpos.y;
-      this.tzpos = tzpos;
+      this.touchZoomDeltaPos.x = touchZoomPos.x - this.touchZoomPos.x;
+      this.touchZoomDeltaPos.y = touchZoomPos.y - this.touchZoomPos.y;
+      this.touchZoomPos = touchZoomPos;
 
-      const newtz = tz - this.tzid;
-      const newtzx = tzx - this.tzxid;
-      const newtzy = tzy - this.tzyid;
+      const newtz = touchZoom - this.touchZoomInitialDistance;
+      const newtzx = touchZoomX - this.touchZoomXInitialDistance;
+      const newtzy = touchZoomY - this.touchZoomYInitialDistance;
 
-      this.tdz = newtz - this.tz;
-      this.tdzx = newtzx - this.tzx;
-      this.tdzy = newtzy - this.tzy;
+      this.touchDeltaZoom = newtz - this.touchZoom;
+      this.touchDeltaZoomX = newtzx - this.touchZoomX;
+      this.touchDeltaZoomY = newtzy - this.touchZoomY;
 
-      this.tz = newtz;
-      this.tzx = newtzx;
-      this.tzy = newtzy;
+      this.touchZoom = newtz;
+      this.touchZoomX = newtzx;
+      this.touchZoomY = newtzy;
 
-      const newtr = a - this.tria;
+      const newtr = a - this.touchRotateInitialAngle;
 
-      this.tdr = newtr - this.tr;
-      this.tr = newtr;
+      this.touchDeltaRotate = newtr - this.touchRotate;
+      this.touchRotate = newtr;
 
-      if (Math.abs(this.tzx) > ZOOM_THRESHOLD) {
+      if (Math.abs(this.touchZoomX) > ZOOM_THRESHOLD) {
         this.isScalingX = true;
       }
 
-      if (Math.abs(this.tzy) > ZOOM_THRESHOLD) {
+      if (Math.abs(this.touchZoomY) > ZOOM_THRESHOLD) {
         this.isScalingY = true;
       }
 
-      if (Math.abs(this.tr) > ROTATE_THRESHOLD_RAD) {
+      if (Math.abs(this.touchRotate) > ROTATE_THRESHOLD_RAD) {
         this.isRotating = true;
       }
     } else {
       this.isPinching = false;
       this.pinchAction = null;
     }
-
   };
 };

@@ -78,6 +78,9 @@ function CrosswordParser() {
             The detection of the crossword grid is very rudimentary and was not improved upon much after it was proven to work with crosswords from the Buffalo News.
           </p>
           <p>
+            This isn't exactly the cleanest code because it was a one off project made for a specific purpose, but it solves a fun project in a cool way while linking a few technologies together.
+          </p>
+          <p>
             This solution uses a pointer library that I made myself a while back (util/pointer.js), because I was curious about making one.
             I have no plans on releasing it, but I do prefer how it works over other libraries I have found.
           </p>
